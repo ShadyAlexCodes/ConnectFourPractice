@@ -3,10 +3,13 @@ package com.xanderendre.connectfour;
 public class Player {
 
     private String playerName;
+    private char playerIcon;
     private int lastLocation;
 
-    public Player(String playerName) {
+
+    public Player(String playerName, char playerIcon) {
         this.playerName = playerName;
+        this.playerIcon = playerIcon;
     }
 
     public Player(String playerName, int lastLocation) {
@@ -29,4 +32,13 @@ public class Player {
     public void setLastLocation(int lastLocation) {
         this.lastLocation = lastLocation;
     }
+
+    public char getPlayerIcon() {
+        return playerIcon;
+    }
+
+    public void setPlayerIcon(char playerIcon) {
+        this.playerIcon = playerIcon;
+    }
+
 }
