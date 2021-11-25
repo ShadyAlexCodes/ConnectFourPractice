@@ -15,7 +15,8 @@ public class Main {
     public static void main(String[] args) {
         String name;
         char icon;
-        for(int i = 0; i < player.length; i++) {
+        for (int i = 0; i < player.length; i++) {
+
             System.out.print("Please enter a player name: ");
             name = scanner.nextLine();
 
@@ -27,7 +28,7 @@ public class Main {
         }
 
 
-        for(int i = 0; i < player.length; i++) {
+        for (int i = 0; i < player.length; i++) {
             System.out.println("Player: " + player[i].getPlayerName() + "  |  Icon: " + player[i].getPlayerIcon());
         }
 
@@ -35,17 +36,19 @@ public class Main {
         displayBoard();
 
         do {
-            if(turnCount == 0) {
+            if (turnCount == 0) {
                 playTurn(player[turnCount]);
-                turnCount++;
-            } else if(turnCount == 1) {
+                gameWon = checkWin(player[turnCount]);
+                turnCount = 1;
+            } else if (turnCount == 1) {
                 playTurn(player[turnCount]);
-                turnCount--;
+                gameWon = checkWin(player[turnCount]);
+                turnCount = 0;
             } else {
                 System.out.println("ERROR!");
             }
             displayBoard();
-            gameWon = checkWin(player[turnCount]);
+
         } while (!gameWon);
 
     }
@@ -82,18 +85,44 @@ public class Main {
 
     private static boolean checkWin(Player player) {
         // check 4 across
-        for(int i = 0; i < 6; i++) {
-            for(int j = 0; j < 7; j++) {
-                if(board[i][j] == player.getPlayerIcon()
-                && board[i][j + 1] == player.getPlayerIcon()
-                && board[i][j + 2] == player.getPlayerIcon()
-                && board[i][j + 3] == player.getPlayerIcon()) {
+        System.out.println("CURRENT PLAYER: " + player.getPlayerName());
+        System.out.println("CURRENT ICON: " + player.getPlayerIcon());
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length - 3; col++) {
+                if (board[row][col] == player.getPlayerIcon()
+                        && board[row][col + 1] == player.getPlayerIcon()
+                        && board[row][col + 2] == player.getPlayerIcon()
+                        && board[row][col + 3] == player.getPlayerIcon()) {
                     System.out.println("The player " + player.getPlayerName() + " has won horizontally!");
                     return true;
                 }
             }
         }
 
+        for (int row = 0; row < board.length - 3; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (board[row][col] == player.getPlayerIcon()
+                        && board[row + 1][col] == player.getPlayerIcon()
+                        && board[row + 2][col] == player.getPlayerIcon()
+                        && board[row + 3][col] == player.getPlayerIcon()) {
+                    System.out.println("The player " + player.getPlayerName() + " has won horizontally!");
+                    return true;
+                }
+            }
+        }
+
+
+        for (int row = 0; row < board.length - 3; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (board[row][col] == player.getPlayerIcon()
+                        && board[row + 1][col + 1] == player.getPlayerIcon()
+                        && board[row + 2][col + 2] == player.getPlayerIcon()
+                        && board[row + 3][col + 3] == player.getPlayerIcon()) {
+                    System.out.println("The player " + player.getPlayerName() + " has won diagonally!");
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -110,6 +139,7 @@ public class Main {
 
     private static void displayBoard() {
         System.out.println();
+        System.out.println("         1   2   3   4   5   6");
         System.out.print("     -----------------------------");
         System.out.println();
         for (int row = 1; row < 6; row++) {
