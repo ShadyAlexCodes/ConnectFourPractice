@@ -105,7 +105,7 @@ public class Main {
                         && board[row + 1][col] == player.getPlayerIcon()
                         && board[row + 2][col] == player.getPlayerIcon()
                         && board[row + 3][col] == player.getPlayerIcon()) {
-                    System.out.println("The player " + player.getPlayerName() + " has won horizontally!");
+                    System.out.println("The player " + player.getPlayerName() + " has won vertically!");
                     return true;
                 }
             }
@@ -118,6 +118,18 @@ public class Main {
                         && board[row + 1][col + 1] == player.getPlayerIcon()
                         && board[row + 2][col + 2] == player.getPlayerIcon()
                         && board[row + 3][col + 3] == player.getPlayerIcon()) {
+                    System.out.println("The player " + player.getPlayerName() + " has won diagonally!");
+                    return true;
+                }
+            }
+        }
+
+        for (int row = 0; row < board.length - 3; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (board[row][col] == player.getPlayerIcon()
+                        && board[row - 1][col + 1] == player.getPlayerIcon()
+                        && board[row - 2][col + 2] == player.getPlayerIcon()
+                        && board[row - 3][col + 3] == player.getPlayerIcon()) {
                     System.out.println("The player " + player.getPlayerName() + " has won diagonally!");
                     return true;
                 }
