@@ -6,7 +6,7 @@ public class Main {
     static char[][] board = new char[6][7];
     static boolean gameWon = false;
 
-    static int turnCount = 0;
+    static int turnCount = 0, colFull = 0;
 
     static Scanner scanner = new Scanner(System.in);
 
@@ -61,8 +61,8 @@ public class Main {
             int col = scanner.nextInt();
 
             // Check that the column is greater than 0 and less than 7
-            if (col < 0 || col > 6) {
-                System.out.println("Column must be between 0 and 7.");
+            if (col < 1 || col > 6) {
+                System.out.println("Column must be between 1 and 6.");
                 continue;
             }
 
@@ -79,6 +79,7 @@ public class Main {
             }
 
             // Inform them that the column is full
+            colFull++;
             System.out.println("The selected column " + col + " is full!");
         } while (true);
     }
@@ -87,6 +88,11 @@ public class Main {
         // check 4 across
         System.out.println("CURRENT PLAYER: " + player.getPlayerName());
         System.out.println("CURRENT ICON: " + player.getPlayerIcon());
+        if(colFull == 6) {
+            System.out.println("THE GAME WAS UNBEATABLE");
+            return true;
+        }
+
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length - 3; col++) {
                 if (board[row][col] == player.getPlayerIcon()
