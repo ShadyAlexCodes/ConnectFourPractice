@@ -3,7 +3,6 @@ package com.xanderendre.connectfour;
 import java.util.Scanner;
 
 public class Main {
-    static char[][] board = new char[6][7];
     static boolean gameWon = false;
 
     static int turnCount = 0, colFull = 0;
@@ -11,6 +10,8 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     static Player[] player = new Player[2];
+
+    static Board board = new Board();
 
     public static void main(String[] args) {
         String name;
@@ -32,8 +33,8 @@ public class Main {
             System.out.println("Player: " + player[i].getPlayerName() + "  |  Icon: " + player[i].getPlayerIcon());
         }
 
-        createBoard();
-        displayBoard();
+        board.setBoard();
+        board.displayBoard();
 
         do {
             if (turnCount == 0) {
@@ -47,7 +48,7 @@ public class Main {
             } else {
                 System.out.println("ERROR!");
             }
-            displayBoard();
+            board.displayBoard();
 
         } while (!gameWon);
 
@@ -69,9 +70,9 @@ public class Main {
             // Iterate through the total number of the rows
             for (int i = 5; i >= 0; i--) {
                 // Check if the bottom (gravity) number is blank
-                if (board[i][col] == ' ') {
+                if (board.getBoard()[i][col] == ' ') {
                     // set it to x. this makes it so next iteration it'll be one less (starts at 5 then after this it'll check 4)
-                    board[i][col] = player.getPlayerIcon();
+                    board.getBoard()[i][col] = player.getPlayerIcon();
                     player.setLastLocation(col);
                     // break the loop to prevent filling the board
                     return;
@@ -93,24 +94,24 @@ public class Main {
             return true;
         }
 
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[0].length - 3; col++) {
-                if (board[row][col] == player.getPlayerIcon()
-                        && board[row][col + 1] == player.getPlayerIcon()
-                        && board[row][col + 2] == player.getPlayerIcon()
-                        && board[row][col + 3] == player.getPlayerIcon()) {
+        for (int row = 0; row < board.getBoard().length; row++) {
+            for (int col = 0; col < board.getBoard()[0].length - 3; col++) {
+                if (board.getBoard()[row][col] == player.getPlayerIcon()
+                        && board.getBoard()[row][col + 1] == player.getPlayerIcon()
+                        && board.getBoard()[row][col + 2] == player.getPlayerIcon()
+                        && board.getBoard()[row][col + 3] == player.getPlayerIcon()) {
                     System.out.println("The player " + player.getPlayerName() + " has won horizontally!");
                     return true;
                 }
             }
         }
 
-        for (int row = 0; row < board.length - 3; row++) {
-            for (int col = 0; col < board[0].length; col++) {
-                if (board[row][col] == player.getPlayerIcon()
-                        && board[row + 1][col] == player.getPlayerIcon()
-                        && board[row + 2][col] == player.getPlayerIcon()
-                        && board[row + 3][col] == player.getPlayerIcon()) {
+        for (int row = 0; row < board.getBoard().length - 3; row++) {
+            for (int col = 0; col < board.getBoard()[0].length; col++) {
+                if (board.getBoard()[row][col] == player.getPlayerIcon()
+                        && board.getBoard()[row + 1][col] == player.getPlayerIcon()
+                        && board.getBoard()[row + 2][col] == player.getPlayerIcon()
+                        && board.getBoard()[row + 3][col] == player.getPlayerIcon()) {
                     System.out.println("The player " + player.getPlayerName() + " has won vertically!");
                     return true;
                 }
@@ -118,24 +119,24 @@ public class Main {
         }
 
 
-        for (int row = 0; row < board.length - 3; row++) {
-            for (int col = 0; col < board[0].length; col++) {
-                if (board[row][col] == player.getPlayerIcon()
-                        && board[row + 1][col + 1] == player.getPlayerIcon()
-                        && board[row + 2][col + 2] == player.getPlayerIcon()
-                        && board[row + 3][col + 3] == player.getPlayerIcon()) {
+        for (int row = 0; row < board.getBoard().length - 3; row++) {
+            for (int col = 0; col < board.getBoard()[0].length; col++) {
+                if (board.getBoard()[row][col] == player.getPlayerIcon()
+                        && board.getBoard()[row + 1][col + 1] == player.getPlayerIcon()
+                        && board.getBoard()[row + 2][col + 2] == player.getPlayerIcon()
+                        && board.getBoard()[row + 3][col + 3] == player.getPlayerIcon()) {
                     System.out.println("The player " + player.getPlayerName() + " has won diagonally!");
                     return true;
                 }
             }
         }
 
-        for (int row = 0; row < board.length - 3; row++) {
-            for (int col = 0; col < board[0].length; col++) {
-                if (board[row][col] == player.getPlayerIcon()
-                        && board[row - 1][col + 1] == player.getPlayerIcon()
-                        && board[row - 2][col + 2] == player.getPlayerIcon()
-                        && board[row - 3][col + 3] == player.getPlayerIcon()) {
+        for (int row = 0; row < board.getBoard().length - 3; row++) {
+            for (int col = 0; col < board.getBoard()[0].length; col++) {
+                if (board.getBoard()[row][col] == player.getPlayerIcon()
+                        && board.getBoard()[row - 1][col + 1] == player.getPlayerIcon()
+                        && board.getBoard()[row - 2][col + 2] == player.getPlayerIcon()
+                        && board.getBoard()[row - 3][col + 3] == player.getPlayerIcon()) {
                     System.out.println("The player " + player.getPlayerName() + " has won diagonally!");
                     return true;
                 }
@@ -144,7 +145,7 @@ public class Main {
         return false;
     }
 
-    private static void createBoard() {
+/*    private static void createBoard() {
         // Iterate through the rows
         for (int row = 1; row < 6; row++) {
             // Iterate through the columns
@@ -169,7 +170,7 @@ public class Main {
             System.out.print("     -----------------------------");
             System.out.println();
         }
-    }
+    }*/
 }
 
 
