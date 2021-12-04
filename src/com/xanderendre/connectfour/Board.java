@@ -24,7 +24,7 @@ public class Board {
         }
     }
 
-    public void setBoard() {
+    public void fillBoard() {
         // Iterate through the rows
         for (int row = 1; row < 6; row++) {
             // Iterate through the columns
@@ -35,5 +35,9 @@ public class Board {
         }
     }
 
+    public int generateRandomNumber(int min, int max) {
+        // Generate a random number in the inclusivity range of the min and max
+        return (int) Math.floor(Math.random() * (max - min + 1) + min);
+    }
 
 }
