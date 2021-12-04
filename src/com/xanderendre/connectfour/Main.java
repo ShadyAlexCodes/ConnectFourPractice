@@ -275,10 +275,9 @@ public class Main {
             }
         }
 
-/*
         // Downward Diagonal
         for (int row = 0; row < board.getBoard().length - 3; row++) {
-            for (int col = 0; col < board.getBoard()[0].length; col++) {
+            for (int col = 0; col < board.getBoard()[0].length - 3; col++) {
                 if (board.getBoard()[row][col] == player.getPlayerIcon()
                         && board.getBoard()[row + 1][col + 1] == player.getPlayerIcon()
                         && board.getBoard()[row + 2][col + 2] == player.getPlayerIcon()
@@ -291,7 +290,7 @@ public class Main {
 
         // Upward Diagonal
         for (int row = 3; row < board.getBoard().length; row++) {
-            for (int col = 0; col < board.getBoard()[0].length; col++) {
+            for (int col = 0; col < board.getBoard()[0].length - 3; col++) {
                 if (board.getBoard()[row][col] == player.getPlayerIcon()
                         && board.getBoard()[row - 1][col + 1] == player.getPlayerIcon()
                         && board.getBoard()[row - 2][col + 2] == player.getPlayerIcon()
@@ -300,7 +299,7 @@ public class Main {
                     return true;
                 }
             }
-        }*/
+        }
         return false;
     }
 
