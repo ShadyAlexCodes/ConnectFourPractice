@@ -302,20 +302,7 @@ public class Main {
         }
         return false;
     }
-
 }
-
-
-
-
-
-/*        for (int i = 0; i < player.length; i++) {
-            System.out.println("Player: " + player[i].getPlayerName() + "  |  Icon: " + player[i].getPlayerIcon());
-        }*/
-
-
-
-
 
 
 
