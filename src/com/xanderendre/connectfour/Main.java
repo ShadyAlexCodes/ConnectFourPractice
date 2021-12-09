@@ -20,7 +20,10 @@ public class Main {
         String gameType, name;
         char icon;
 
+        // Run the program while gameStarted != true.
+
         do {
+            // Grab the input from the scanner
             gameType = scanner.nextLine();
             switch (gameType) {
                 case "pvp":
